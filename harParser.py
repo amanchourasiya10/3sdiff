@@ -9,10 +9,24 @@ def createHeaders(headersList):
 
 def parseHar(content):
     obj = json.loads(content)
+    try:
+        query = obj['log']['entries'][0]['request']['postData']['text']
+    except:
+        query = '{}'
+    
+    try:
+        headers = createHeaders(obj['log']['entries'][0]['request']['headers'])
+    except:
+        headers = '{}'
+    
+    try:
+        resHeaders = createHeaders(obj['log']['entries'][0]['response']['headers'])
+    except:
+        resHeaders = '{}'
 
-    query = obj['log']['entries'][0]['request']['postData']['text']
-    headers = createHeaders(obj['log']['entries'][0]['request']['headers'])
-    resHeaders = createHeaders(obj['log']['entries'][0]['response']['headers'])
-    response = obj['log']['entries'][0]['response']['content']['text']
+    try:
+        response = obj['log']['entries'][0]['response']['content']['text']
+    except:
+        response = '{}'
 
     return {"queryHeader": headers, "query": query, "responseHeader": resHeaders, "response": response}

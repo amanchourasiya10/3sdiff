@@ -2,31 +2,37 @@ import json
 
 
 def checkQHeader(text):
+    text = text.strip()
     if (text[:6].find("POST") != -1):
         return True
     return False
 
 
 def checkQuery(text):
+    text = text.strip()
     if (text[:30].find("AnswerEntityRequests") != -1):
         return True
     return False
 
 
 def checkResponse(text):
+    text = text.strip()
     if (text[:30].find("ApiVersion") != -1):
         return True
     return False
 
 
 def checkRHeader(text):
+    text = text.strip()
     if (text[:6].find("HTTP") != -1):
         return True
     return False
 
 
 def processData(splitData):
+    print("kay be")
     processedData = []
+    print("ayayayyaya")
     for elem in splitData:
         if (check_string(elem)):
             processedData.append(elem)
